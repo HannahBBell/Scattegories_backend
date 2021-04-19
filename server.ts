@@ -39,7 +39,12 @@ app.post("/category", async (req, res) => {
   res.json(addedCategory.rows);
 });
 
-//
+//get all names from database
+app.get("/names", async (req, res) => {
+  const playerName = await client.query('SELECT player FROM players');
+  res.json(playerName.rows);
+});
+
 
 
 //Start the server on the given port
