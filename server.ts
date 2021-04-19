@@ -32,7 +32,7 @@ app.get("/category", async (req, res) => {
   res.json(randomCategory.rows);
 });
 
-//add a category
+//add a category to db
 app.post("/category", async (req, res) => {
   const {category} = req.body;
   const addedCategory = await client.query('INSERT INTO categories (category) VALUES ($1) RETURNING *', [category]);
@@ -50,6 +50,13 @@ app.delete("/names/:player", async (req, res) => {
   const {player} = req.params;
   await client.query('DELETE FROM players WHERE player = $1', [player]);
   res.json("Player was removed");
+});
+
+//add a player to db
+app.post("/names", async (req, res) => {
+  const {player} = req.body;
+  const addedName = await client.query('INSERT INTO players (player) VALUES ($1) RETURNING *', [player]);
+  res.json(addedName.rows);
 });
 
 //Start the server on the given port
