@@ -26,9 +26,9 @@ app.use(cors()) //add CORS support to each following route handler
 const client = new Client(dbConfig);
 client.connect();
 
-app.get("/", async (req, res) => {
-  const dbres = await client.query('select * from categories');
-  res.json(dbres.rows);
+app.get("/categories", async (req, res) => {
+  const randomCategory = await client.query('SELECT category FROM categories ORDER BY RANDOM() LIMIT 1');
+  res.json(randomCategory.rows);
 });
 
 
