@@ -46,9 +46,9 @@ app.get("/names", async (req, res) => {
 });
 
 //delete a name from a database
-app.delete("/names/:name", async (req, res) => {
-  const {name} = req.params;
-  await client.query('DELETE FROM players WHERE name = $1', [name]);
+app.delete("/names/:player", async (req, res) => {
+  const {player} = req.params;
+  await client.query('DELETE FROM players WHERE name = $1', [player]);
   res.json("Player was removed");
 });
 
