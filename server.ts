@@ -26,10 +26,20 @@ app.use(cors()) //add CORS support to each following route handler
 const client = new Client(dbConfig);
 client.connect();
 
+//get a random category
 app.get("/category", async (req, res) => {
   const randomCategory = await client.query('SELECT category FROM categories ORDER BY RANDOM() LIMIT 1');
   res.json(randomCategory.rows);
 });
+
+//add a category
+app.post("/category", async (req, res) => {
+  const {category} = req.body;
+  const addedCategory = await client.query('INSERT INTO categories (category) VALUES ($1)', [category]);
+  res.json(addedCategory.rows);
+});
+
+//
 
 
 //Start the server on the given port
