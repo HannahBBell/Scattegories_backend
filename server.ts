@@ -45,7 +45,12 @@ app.get("/names", async (req, res) => {
   res.json(playerName.rows);
 });
 
-
+//delete a name from a database
+app.delete("/names/:name", async (req, res) => {
+  const {name} = req.params;
+  await client.query('DELETE FROM players WHERE name = $1', [name]);
+  res.json("Player was removed");
+});
 
 //Start the server on the given port
 const port = process.env.PORT;
