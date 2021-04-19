@@ -36,7 +36,7 @@ app.get("/category", async (req, res) => {
 app.post("/category", async (req, res) => {
   const {category} = req.body;
   const addedCategory = await client.query('INSERT INTO categories (category) VALUES ($1) RETURNING *', [category]);
-  // res.json(addedCategory.rows);
+  res.json(addedCategory.rows);
 });
 
 //
