@@ -62,7 +62,7 @@ app.post("/names", async (req, res) => {
 //get a random letter
 app.get("/letter", async (req, res) => {
   const randomLetter = await client.query('SELECT letter FROM letters ORDER BY RANDOM() LIMIT 1');
-  res.json(randomLetter.rows);
+  res.json(randomLetter.rows[0]);
 });
 
 //Start the server on the given port
