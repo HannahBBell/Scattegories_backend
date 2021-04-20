@@ -29,7 +29,7 @@ client.connect();
 //get a random category
 app.get("/category", async (req, res) => {
   const randomCategory = await client.query('SELECT category FROM categories ORDER BY RANDOM() LIMIT 1');
-  res.json(randomCategory.rows);
+  res.json(randomCategory.rows[0]);
 });
 
 //add a category to db
