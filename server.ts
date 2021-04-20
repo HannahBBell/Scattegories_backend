@@ -52,6 +52,12 @@ app.delete("/names/:player", async (req, res) => {
   res.json("Player was removed");
 });
 
+//delete all names from database
+app.delete("/names", async (req, res) => {
+  await client.query('DELETE FROM players');
+  res.json("Players were removed");
+});
+
 //add a player to db
 app.post("/names", async (req, res) => {
   const {player} = req.body;
