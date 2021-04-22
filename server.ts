@@ -41,7 +41,7 @@ app.post("/category", async (req, res) => {
 
 //get all names from database
 app.get("/names", async (req, res) => {
-  const playerName = await client.query('SELECT * FROM players');
+  const playerName = await client.query('SELECT * FROM players ORDER BY id ASC');
   res.json(playerName.rows);
 });
 
