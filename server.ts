@@ -56,7 +56,7 @@ app.delete("/names/:player", async (req, res) => {
 app.put("/names/:player", async (req, res) => {
   const {player} = req.params;
   const {in_game} = req.body;
-  const updateInGame = await client.query("UPDATE players SET in_game = 'false' WHERE player=$1", [player])
+  const updateInGame = await client.query("UPDATE players SET in_game = $1 WHERE player=$2", [in_game, player])
   res.json("player's in game value was updated")
 })
 
