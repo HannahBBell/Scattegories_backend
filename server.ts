@@ -52,6 +52,14 @@ app.delete("/names/:player", async (req, res) => {
   res.json("Player was removed");
 });
 
+//update a row in the players database
+app.put("/names/:player", async (req, res) => {
+  const {player} = req.params;
+  const {in_game} = req.body;
+  const updateInGame = await client.query("UPDATE players SET in_game = 'false' WHERE player=$1", [player])
+  res.json("player's in game value was updated")
+})
+
 //delete all names from database
 app.delete("/names", async (req, res) => {
   await client.query('DELETE FROM players');
