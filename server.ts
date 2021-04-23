@@ -60,6 +60,13 @@ app.put("/names/:player", async (req, res) => {
   res.json("player's in game value was updated")
 })
 
+//update entire in_game column in database to 'true'
+app.put("/names/", async (req, res) => {
+  const {in_game} = req.body;
+  const updateToTrue = await client.query("UPDATE players SET in_game = $1", [in_game])
+  res.json("in_game was updated")
+})
+
 //delete all names from database
 app.delete("/names", async (req, res) => {
   await client.query('DELETE FROM players');

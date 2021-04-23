@@ -14,3 +14,6 @@ id SERIAL PRIMARY KEY,
 letter TEXT UNIQUE);
 
 INSERT INTO letters (letter) VALUES ('A'), ('B'), ('C'), ('D'), ('E'), ('F'), ('G'), ('H'), ('I'), ('J'), ('K'), ('L'), ('M'), ('N'), ('O'), ('P'), ('Q'), ('R'), ('S'), ('T'), ('U'), ('V'), ('W'), ('X'), ('Y'), ('Z');
+
+ALTER TABLE players
+ADD in_game VARCHAR(255) DEFAULT 'true';
