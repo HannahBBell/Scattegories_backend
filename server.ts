@@ -61,7 +61,7 @@ app.put("/names/:player", async (req, res) => {
 })
 
 //update entire in_game column in database to 'true'
-app.put("/names/", async (req, res) => {
+app.put("/names", async (req, res) => {
   const {in_game} = req.body;
   const updateToTrue = await client.query("UPDATE players SET in_game = $1", [in_game])
   res.json("in_game was updated")
